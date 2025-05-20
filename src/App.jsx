@@ -4,6 +4,7 @@ import Home from "./components/Home";
 import { fetchUsers } from "./api"; 
 import { useState, useEffect } from "react";
 import Newsfeed from "./components/Newsfeed";
+import Article from "./components/Article";
 
 
 function App() {
@@ -25,6 +26,7 @@ useEffect (() => {
       <Routes>
         <Route path="/" element={<Home user={user}/>}/>
         <Route path="/newsfeed" element={<Newsfeed user={user}/>}/>
+        <Route path="/articles/:article_id" element={<Article/>}/>
       </Routes>
     </div>
   )
