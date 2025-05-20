@@ -90,12 +90,66 @@ header {
     
 }
 
-/* ArticleCard 
+/* ListArticles */
+.listArticles-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ArticleCard */
 
 .article-card {
-    display: flex;
+    padding: 3%;
+    margin-bottom: 1%;
+    margin-top: 1%;
     background-color: antiquewhite;
+    /* border: 0.1vh solid black; */
+    cursor: pointer;
+}
+
+/* Article page */
+.back-btn {
+    margin-top: 3%;
+    width: 15%;   
+    height: 8vh;    
+    background-color: red;
+    border: 0.6vh solid red;
+    color: white;
+    border-radius: 1vh;
+    font-weight: 600;
+    font-size: x-large;
+    text-align: center;
+    box-sizing: border-box;
+    cursor: pointer;
+    margin-bottom: 3%;
+}
+
+.article-container {
+    background-color: antiquewhite;
+    border-radius: 5%;
     padding: 3%;
 }
-*/
 
+.topic-date-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.article-image {
+    margin-top: 3%;
+    margin-bottom: 3%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.article-btn-row {
+    padding: 3%;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}

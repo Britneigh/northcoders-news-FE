@@ -1,13 +1,17 @@
 
 
-const ArticleCard = ({articles}) => {
+const ArticleCard = ({articles, onClick}) => {
 
   return (
     <div>
         {articles.map((article) => (
-        <div key={article.article_id}  className="article-card">
+        <div onClick={() => onClick(article.article_id)} key={article.article_id} className="article-card">
         <h3>{article.topic}</h3>
-        <p>Date posted: {article.created_at}</p>
+        <p>Date posted: {new Date(article.created_at).toLocaleDateString('en-GB', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        })}</p>
         <p>{article.author}</p>
         <h2>{article.title}</h2>
         <p>{article.votes}</p>
