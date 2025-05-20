@@ -6,7 +6,6 @@ import { useState, useEffect } from "react";
 import Newsfeed from "./components/Newsfeed";
 import Article from "./components/Article";
 
-
 function App() {
     const [user, setUser] = useState({});
     const [error, setError] = useState(null);
@@ -20,6 +19,7 @@ useEffect (() => {
         setError("User doesn't exist")
 })
  }, []) 
+
   return (
     <div>
       <Header/>

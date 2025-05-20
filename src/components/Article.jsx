@@ -1,6 +1,7 @@
 import { Link, useParams } from "react-router";
 import { useEffect, useState } from "react";
 import { fetchArticleById } from "../api";
+import ListComments from "./ListComments";
    
 const Article = () => {
     
@@ -24,13 +25,14 @@ useEffect(() => {
   })
 }, []);
 
-useEffect(() => {
- console.log(article)
-}, [article])
+if (isLoading) {
+    <p>Loading...</p>
+}
+
   return (
     <div>
-        <Link to="/newsfeed"><button className="back-btn">Back to Newsfeed</button></Link>
         <div className="article-container">
+            <Link to="/newsfeed"><button className="back-btn">Back to Newsfeed</button></Link>
             <div className="topic-date-row">
             <h1>{article.topic}</h1>
             <p>Date posted: {new Date(article.created_at).toLocaleDateString('en-GB', {
@@ -44,7 +46,7 @@ useEffect(() => {
         <p>{article.body}</p>
         <div className="article-image">
             <img src={article.article_img_url} alt="article image"></img>
-            <div class="article-btn-row">
+            <div className="article-btn-row">
                 <button>Upvote icon</button>
                 <button>Downvote icon</button>
                 <p>{article.votes}</p>
@@ -52,7 +54,7 @@ useEffect(() => {
                 <p>{article.comment_count}</p>
             </div>
         </div>
-
+            <ListComments article_id={articleId}/>
         </div>
     </div>
   )
