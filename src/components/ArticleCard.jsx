@@ -1,6 +1,10 @@
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCaretUp, faComments } from "@fortawesome/free-solid-svg-icons";
+   
 
 const ArticleCard = ({articles, onClick}) => {
+const upvoteIcon = <FontAwesomeIcon icon={faCaretUp} />;
+const commentsIcon = <FontAwesomeIcon icon={faComments} />;
 
   return (
     <div>
@@ -15,9 +19,9 @@ const ArticleCard = ({articles, onClick}) => {
         <p>{article.author}</p>
         <h2>{article.title}</h2>
         <p>{article.votes}</p>
-        <button>Votes icon</button>
+        <button className="article-vote-btn">{upvoteIcon}</button>
         <p>{article.comment_count}</p>
-        <button>Comment count icon</button>
+        <button className="comments-btn">{commentsIcon}</button>
         </div>
         ))}
     </div>

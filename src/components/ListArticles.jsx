@@ -44,6 +44,8 @@ if (isLoading) {
 
   return (
     <div className="listArticles-container">
+      {error && <p>{error}</p>}
+      {clickError && <p>{clickError}</p>}
       <ArticleCard onClick={handleClick} articles={articles}/>
     </div>
   )

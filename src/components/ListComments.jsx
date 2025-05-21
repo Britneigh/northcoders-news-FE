@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
-import { fetchCommentsById, fetchUsers } from "../api";
+import { fetchCommentsById } from "../api";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCaretUp } from "@fortawesome/free-solid-svg-icons";
 
-const ListComments = ({article_id, user}) => {
+const ListComments = ({article_id, users}) => {
     const [commentsError, setCommentsError] = useState(null);
-    const [usersError, setUsersError] = useState(null);
     const [comments, setComments] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-    const [users, setUsers] = useState([]);
+    const upvoteIcon = <FontAwesomeIcon icon={faCaretUp} />;
 
 useEffect (() => {
   setIsLoading(true)
@@ -18,37 +19,24 @@ useEffect (() => {
     .catch((err) => {
       setIsLoading(false)
       setCommentsError("Failed to retrieve comments")
-      return commentsError
 })
  }, []) 
 
-useEffect (() => {
-setIsLoading(true)
-    fetchUsers()
-    .then((res) => {
-    setIsLoading(false)
-    setUsers(res.data.users)
-    })
-    .catch((err) => {
-    setIsLoading(false)
-    setUsersError("User doesn't exist")
-    return usersError
-})
-}, [comments]) 
 
 if (isLoading){
-    <p>Loading...</p>
+    return <p>Loading...</p>
 }
 
 return (
 <div>
+{commentsError && <p>{commentsError}</p>}
     {comments.map((comment) => {
         return (
         <div key={comment.comment_id}>
         {users.map((user) => {
             if (comment.author === user.username) {
                 return (
-                <img key={user.username} src={user.avatar_url} alt={`${user.username}'s avatar`}></img>
+                <img className="comments-avatar" key={user.username} src={user.avatar_url} alt={`${user.username}'s avatar`}></img>
                 )
             }
             return null;
@@ -62,9 +50,8 @@ return (
             month: 'long',
             day: 'numeric',
             })}</p>
-            <button>Upvote icon</button>
-            <button>Downvote icon</button>
             <p>{comment.votes}</p>
+            <button className="article-vote-btn">{upvoteIcon}</button>
         </div>
         )
     })}
