@@ -97,6 +97,47 @@ header {
     flex-direction: column;
 }
 
+.comments-row-wrapper {
+    border: 0.3vh solid grey;
+    margin: 1%;
+    padding: 1%;
+    display: flex;
+    flex-direction: row;
+}
+
+.comments-row {
+    flex: 1;
+    display: flex;
+    flex-direction: row;   
+    justify-content: space-between;
+}
+
+.comments-column {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    margin: 1.5%;
+    text-align: left;
+}
+
+
+.comments-votes-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    text-align: right;
+}
+
+.comments-size {
+    width: 80%;
+}
+
+.votes-count {
+    width: 100%;
+    margin: 1%;
+    padding: 5%;
+}
+
 /* ArticleCard */
 
 .article-card {
@@ -146,16 +187,19 @@ header {
 
 .article-image {
     margin-top: 3%;
-    margin-bottom: 3%;
+}
+
+.article-column {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
     width: 100%;
+    gap: 1rem;
 }
 
 .article-btn-row {
-    margin-top: 3%;
     display: flex;
     flex-direction: row;
     gap: 1rem;
@@ -188,6 +232,12 @@ header {
 .downvote-btn:active:not(:disabled) {
     background-color: white;
     color: red;
+}
+
+.comment-field {
+    border: none;
+    margin: 1%;
+    resize: none;
 }
 
 .comments-btn {

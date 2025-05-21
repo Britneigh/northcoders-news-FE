@@ -19,7 +19,7 @@ const commentsIcon = <FontAwesomeIcon icon={faComments} />;
         <p>{article.author}</p>
         <h2>{article.title}</h2>
         <p>{article.votes}</p>
-        <button className="article-vote-btn">{upvoteIcon}</button>
+        <button className="article-vote-btn" style={{color: "grey"}}>{upvoteIcon}</button>
         <p>{article.comment_count}</p>
         <button className="comments-btn">{commentsIcon}</button>
         </div>

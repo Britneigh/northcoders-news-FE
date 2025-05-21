@@ -2,13 +2,15 @@ import { fetchArticles, fetchArticleById } from "../api";
 import { useEffect, useState } from "react";
 import ArticleCard from "./ArticleCard";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "./UserContext";
 
 const ListArticles = () => {
-  const [error, setError] = useState(null);
   const [clickError, setClickError] = useState(null);
   const [articles, setArticles] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+
+  const {isLoading, setIsLoading, error, setError} = useContext(UserContext);
 
 useEffect (() => {
   setIsLoading(true)
