@@ -19,7 +19,7 @@ useEffect (() => {
     .then((res) => {
       setIsLoading(false)
       setUsers(res.data.users)
-      setLoggedInUser(res.data.users[100])
+      setLoggedInUser(res.data.users[0])
     })
     .catch((err) => {
       setIsLoading(false)

@@ -3,10 +3,11 @@ import { UserContext } from "./UserContext";
 import { postComment } from "../api";
 
 const Comment = ({article_id, setComments}) => {
-    const {loggedInUser, error, setError} = useContext(UserContext);
+    const {loggedInUser} = useContext(UserContext);
     const [isPosted, setIsPosted] = useState(null);
     const [comment, setComment] = useState("");
     const [isPosting, setIsPosting] = useState(false);
+    const [commentError, setCommentError] = useState(null);
 
 const handleSubmit = (e) => {
     e.preventDefault();
@@ -16,7 +17,7 @@ const handleSubmit = (e) => {
     }
 
     if (!loggedInUser){
-    setError("You need to be logged in to comment.")
+    setCommentError("You need to be logged in to comment.")
     setComment("");
     return;
     }
@@ -24,7 +25,7 @@ const handleSubmit = (e) => {
     setIsPosting(true); 
     postComment(article_id, loggedInUser.username, comment)
     .then((res) => {
-    setError(null)
+    setCommentError(null)
     setIsPosted("Comment posted!")
     setIsPosting(false)
     setComment("");
@@ -34,7 +35,7 @@ const handleSubmit = (e) => {
         ]);
     })
     .catch((err) => {
-    setError("Failed to post comment. Try again.");
+    setCommentError("Failed to post comment. Try again.");
     })
 }
 
@@ -53,7 +54,7 @@ const handleSubmit = (e) => {
         <button type="submit"disabled={isPosting || !comment.trim()}>
           {isPosting ? "Posting..." : "Post"}</button>
     </form>
-    {error && <p>{error}</p>}
+    {commentError && <p>{commentError}</p>}
     {isPosted && <p>{isPosted}</p>}
     </>
   )
