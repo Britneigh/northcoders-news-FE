@@ -19,3 +19,9 @@ export const fetchArticleById = (article_id) => {
 export const fetchCommentsById = (article_id) => {
   return ncNewsApi.get(`/articles/${article_id}/comments`)
 }
+
+export const patchArticle = (article_id, voteValue) => {
+  return ncNewsApi.patch(`/articles/${article_id}`, {
+    inc_votes: voteValue
+  })
+}

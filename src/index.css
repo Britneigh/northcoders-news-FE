@@ -108,6 +108,14 @@ header {
     cursor: pointer;
 }
 
+.article-vote-btn {
+    border: none;
+    background-color: antiquewhite;
+    border-radius: 15%;
+    color: limegreen;
+    font-size: 250%;
+}
+
 /* Article page */
 .back-btn {
     margin-top: 3%;
@@ -151,4 +159,46 @@ header {
     display: flex;
     flex-direction: row;
     gap: 1rem;
+}
+
+.vote-btn {
+    border: none;
+    background-color: grey;
+    border-radius: 15%;
+    color: white;
+    font-size: 250%;
+    cursor: pointer;
+}
+
+.vote-btn:disabled {
+    cursor: not-allowed;
+}
+
+.upvote-btn:hover:not(:disabled) {
+    background-color: limegreen;
+}
+.downvote-btn:hover:not(:disabled) {
+    background-color: red;
+}
+
+.upvote-btn:active:not(:disabled) {
+    background-color: white;
+    color: limegreen;
+}
+.downvote-btn:active:not(:disabled) {
+    background-color: white;
+    color: red;
+}
+
+.comments-btn {
+    border: none;
+    background-color: antiquewhite;
+    border-radius: 10%;
+    color: grey;
+    font-size: 250%;
+}
+
+.comments-avatar {
+    width: 10%;
+    height: 10%;
 }
