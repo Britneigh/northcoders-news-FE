@@ -25,3 +25,10 @@ export const patchArticle = (article_id, voteValue) => {
     inc_votes: voteValue
   })
 }
+
+export const postComment = (article_id, username, body) => {
+  return ncNewsApi.post(`articles/${article_id}/comments`, {
+    username: username,
+    body: body
+  })
+}

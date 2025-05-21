@@ -1,38 +1,17 @@
-import { useEffect, useState } from "react";
-import { fetchCommentsById } from "../api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretUp } from "@fortawesome/free-solid-svg-icons";
+import { useContext } from "react";
+import { UserContext } from "./UserContext";
 
-const ListComments = ({article_id, users}) => {
-    const [commentsError, setCommentsError] = useState(null);
-    const [comments, setComments] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
+const ListComments = ({comments}) => {
     const upvoteIcon = <FontAwesomeIcon icon={faCaretUp} />;
-
-useEffect (() => {
-  setIsLoading(true)
-    fetchCommentsById(article_id)
-    .then((res) => {
-        setComments(res.data.comments)
-        setIsLoading(false)
-    })
-    .catch((err) => {
-      setIsLoading(false)
-      setCommentsError("Failed to retrieve comments")
-})
- }, []) 
-
-
-if (isLoading){
-    return <p>Loading...</p>
-}
+    const {users} = useContext(UserContext);
 
 return (
-<div>
-{commentsError && <p>{commentsError}</p>}
+<>
     {comments.map((comment) => {
         return (
-        <div key={comment.comment_id}>
+        <div key={comment.comment_id} className="comments-row-wrapper">
         {users.map((user) => {
             if (comment.author === user.username) {
                 return (
@@ -41,21 +20,30 @@ return (
             }
             return null;
         })}
-        <div>
-            <h3>{comment.author}</h3>
-            <p>{comment.body}</p>
-        </div>
-            <p>Date posted: {new Date(comment.created_at).toLocaleDateString('en-GB', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
+        <div className="comments-column">
+            <div className="comments-row">
+                <h3>{comment.author}</h3>
+                <p>Date posted: {new Date(comment.created_at).toLocaleDateString('en-GB', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
             })}</p>
-            <p>{comment.votes}</p>
-            <button className="article-vote-btn">{upvoteIcon}</button>
+            </div>
+            <div className="comments-row">
+                <p className="comments-size">{comment.body}</p>
+            <div className="comments-column">
+                <div className="comments-votes-row">
+                <p className="votes-count">{comment.votes}</p>
+                <button className="article-vote-btn" style={{color: "grey"}}>{upvoteIcon}</button>
+            </div>
+            </div>
+            </div>
+
+        </div>
         </div>
         )
     })}
-</div>
+</>
 )
 }
 
