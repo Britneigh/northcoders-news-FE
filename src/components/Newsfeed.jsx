@@ -13,7 +13,7 @@ const Newsfeed = () => {
         <h2>{loggedInUser ? loggedInUser.username : "guest"}</h2>
         <div className="navBar-btn-wrapper">
                 <button className="navBar-btn">Newsfeed</button>
-          <Link><button className="navBar-btn">Topics</button></Link>
+          <Link to="/topics"><button className="navBar-btn">Topics</button></Link>
         </div>
         </nav>
         <ListArticles/>

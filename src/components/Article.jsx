@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
 import { fetchArticleById, patchArticle, fetchCommentsById, deleteComment } from "../api";
 import ListComments from "./ListComments";
@@ -15,6 +15,7 @@ const Article = () => {
     
   const params = useParams();
   const articleId = params.article_id;
+  const navigate = useNavigate();
   const [article, setArticle] = useState({});
   const [votes, setVotes] = useState(0);
   const [patchError, setPatchError] = useState(null);
@@ -107,7 +108,7 @@ const handleRemove = (commentId) => {
   return (
     <div>
         <div className="article-container">
-            <Link to="/newsfeed"><button className="back-btn">Back to Newsfeed</button></Link>
+            <button className="back-btn" onClick={() => navigate(-1)}>Back</button>
             {error && <p>{error}</p>}
             <div className="topic-date-row">
             <h1>{article.topic}</h1>

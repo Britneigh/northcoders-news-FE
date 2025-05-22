@@ -22,21 +22,16 @@ useEffect (() => {
     .catch((err) => {
       setIsLoading(false)
       setError("Failed to retrieve articles")
-      return error
 })
  }, []) 
 
 const handleClick = (article_id) => {
-  setIsLoading(true)
   fetchArticleById(article_id)
-      .then((res) => {
-        setIsLoading(false)
+      .then(() => {
         navigate("/articles/" + article_id)
       })
       .catch((err) => {
-        setIsLoading(false)
         setClickError("Failed to retrieve article_id. Try again.")
-        return clickError
   })
 }
 

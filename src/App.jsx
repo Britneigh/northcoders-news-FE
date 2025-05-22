@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import Newsfeed from "./components/Newsfeed";
 import Article from "./components/Article";
 import { UserContext } from "./components/UserContext";
+import Topics from "./components/Topics";
 
 function App() {
     const [users, setUsers] = useState([]);
@@ -34,7 +35,8 @@ useEffect (() => {
       <Routes>
         <Route path="/" element={<Home />}/>
         <Route path="/newsfeed" element={<Newsfeed />}/>
-        <Route path="/articles/:article_id" element={<Article/>}/>
+        <Route path="/articles/:article_id" element={<Article />}/>
+        <Route path="/topics/:topic?" element={<Topics />}/>
       </Routes>
     </>
   </UserContext.Provider>
