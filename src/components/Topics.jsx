@@ -15,7 +15,7 @@ const Topics = () => {
 
 useEffect(() => {
     setIsLoading(true)
-    fetchArticles(topic)
+    fetchArticles({topic})
     .then((res) => {
         setError(null);
         setIsLoading(false);
