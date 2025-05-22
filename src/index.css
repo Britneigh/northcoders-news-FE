@@ -87,7 +87,12 @@ header {
     text-align: center;
     box-sizing: border-box;
     cursor: pointer;
-    
+}
+
+.navBar-btn:hover {
+    background-color: white;
+    border: 0.6vh solid red;
+    color: black;
 }
 
 /* ListArticles */
@@ -95,6 +100,8 @@ header {
     width: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    text-align: center;
 }
 
 .comments-row-wrapper {
@@ -272,4 +279,39 @@ header {
 .comments-avatar {
     width: 10%;
     height: 10%;
+}
+
+/* TopicsNavBar */
+
+.topics-row {
+    display: flex;
+    flex-direction: row;
+    margin: 5%;
+    justify-content: space-around;
+}
+
+.topics-navBar-btn {
+    width: 20vw;   
+    height: 10vh;    
+    background-color: red;
+    border: 0.6vh solid red;
+    color: white;
+    border-radius: 1vh;
+    font-weight: 600;
+    font-size: x-large;
+    text-align: center;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.topics-navBar-btn:hover {
+    background-color: white;
+    border: 0.6vh solid red;
+    color: black;
+}
+
+/* ListTopics */
+
+.articles-column {
+    border: none;
 }
