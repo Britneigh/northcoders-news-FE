@@ -138,6 +138,27 @@ header {
     padding: 5%;
 }
 
+.delete-btn {
+    background-color: rgb(211, 0, 0);
+    border: 0.1vh solid rgb(182, 1, 1);
+    border-radius: 10%;
+    margin: 1%;
+    font-size: large;
+    color: white;    
+}
+
+.delete-btn:hover {
+    background-color: rgb(245, 49, 49);
+    border: 0.1vh solid rgb(245, 49, 49);
+    cursor: pointer;
+}
+
+.delete-btn:active {
+    background-color: rgb(182, 0, 0);
+    border: 0.1vh solid rgb(182, 0, 0);
+    cursor: pointer;   
+}
+
 /* ArticleCard */
 
 .article-card {

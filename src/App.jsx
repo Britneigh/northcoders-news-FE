@@ -8,7 +8,7 @@ import Article from "./components/Article";
 import { UserContext } from "./components/UserContext";
 
 function App() {
-    const [users, setUsers] = useState(0);
+    const [users, setUsers] = useState([]);
     const [loggedInUser, setLoggedInUser] = useState({});
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
