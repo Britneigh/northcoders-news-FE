@@ -35,6 +35,7 @@ const handleSubmit = (e) => {
         ]);
     })
     .catch((err) => {
+    setIsPosting(false)
     setCommentError("Failed to post comment. Try again.");
     })
 }

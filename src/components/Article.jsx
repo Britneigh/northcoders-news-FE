@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { fetchArticleById, patchArticle, fetchCommentsById } from "../api";
+import { useEffect, useState, useRef } from "react";
+import { fetchArticleById, patchArticle, fetchCommentsById, deleteComment } from "../api";
 import ListComments from "./ListComments";
 import Comment from "./Comment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -22,6 +22,17 @@ const Article = () => {
   const [comments, setComments] = useState([]);
   const [commentsError, setCommentsError] = useState(null);
   const {loggedInUser, isLoading, setIsLoading, error, setError} = useContext(UserContext);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [deleteError, setDeleteError] = useState(null);
+  const scrollPosition = useRef(null);
+
+  useEffect(() => {
+  if (scrollPosition.current !== null) {
+    window.scrollTo(0, scrollPosition.current);
+    scrollPosition.current = null;
+  }
+}, [comments]);
+
 
 useEffect(() => {
   setIsLoading(true)
@@ -44,7 +55,7 @@ useEffect(() => {
     .catch((err) => {
       setIsLoading(false)
       setCommentsError("Failed to retrieve comments")
-});
+    });
 }, []);
 
 if (isLoading) {
@@ -53,7 +64,6 @@ if (isLoading) {
 
 const handleClick = (voteType) => {
   let voteValue = voteType === "upvote" ? 1 : -1;
-  
   if (!loggedInUser){
     setPatchError("You need to be logged in to vote!")
     return;
@@ -73,7 +83,25 @@ const handleClick = (voteType) => {
     setVotes(prevVotes => prevVotes - voteChange);
     setPatchError("Failed to update votes. Try again.");
   })
+}
 
+const handleRemove = (commentId) => {
+  if (isDeleting) {
+    return;
+  }
+
+  setIsDeleting(true)
+  scrollPosition.current = window.pageYOffset;
+   deleteComment(commentId)
+    .then(() => {
+        setDeleteError(null)
+        setIsDeleting(false)
+        setComments(prev => prev.filter(comment => comment.comment_id !== commentId))
+    })
+    .catch((err) => {
+      setIsDeleting(false)
+      setDeleteError("Failed to delete comment. Try again.")
+    });
 }
 
   return (
@@ -105,7 +133,7 @@ const handleClick = (voteType) => {
             <Comment article_id={articleId} setComments={setComments}/>
         </div>
           {commentsError && <p>{commentsError}</p>}
-          <ListComments article_id={articleId} comments={comments}/>
+          <ListComments comments={comments} handleRemove={handleRemove} isDeleting={isDeleting} deleteError={deleteError}/>
         </div>
     </div>
   )

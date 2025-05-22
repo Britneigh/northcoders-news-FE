@@ -1,11 +1,13 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCaretUp } from "@fortawesome/free-solid-svg-icons";
+import { faCaretUp, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { useContext } from "react";
 import { UserContext } from "./UserContext";
 
-const ListComments = ({comments}) => {
+
+const ListComments = ({comments, handleRemove, isDeleting, deleteError}) => {
     const upvoteIcon = <FontAwesomeIcon icon={faCaretUp} />;
-    const {users} = useContext(UserContext);
+    const bin = <FontAwesomeIcon icon={faTrashCan} />;
+    const {users, loggedInUser} = useContext(UserContext);
 
 return (
 <>
@@ -35,8 +37,10 @@ return (
                 <div className="comments-votes-row">
                 <p className="votes-count">{comment.votes}</p>
                 <button className="article-vote-btn" style={{color: "grey"}}>{upvoteIcon}</button>
+                {comment.author === loggedInUser.username && <button className="delete-btn" disabled={isDeleting} onClick={() => handleRemove(comment.comment_id)}>{bin}</button>}
             </div>
             </div>
+            {deleteError && <p>{deleteError}</p>}
             </div>
 
         </div>
