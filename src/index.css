@@ -97,6 +97,7 @@ header {
 .newsfeed-column {
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .sortBy-wrapper {

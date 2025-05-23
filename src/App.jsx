@@ -7,6 +7,7 @@ import Newsfeed from "./components/Newsfeed";
 import Article from "./components/Article";
 import { UserContext } from "./components/UserContext";
 import Topics from "./components/Topics";
+import PageNotFound from "./components/PageNotFound";
 
 function App() {
     const [users, setUsers] = useState([]);
@@ -37,6 +38,7 @@ useEffect (() => {
         <Route path="/newsfeed" element={<Newsfeed />}/>
         <Route path="/articles/:article_id" element={<Article />}/>
         <Route path="/topics/:topic?" element={<Topics />}/>
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </>
   </UserContext.Provider>

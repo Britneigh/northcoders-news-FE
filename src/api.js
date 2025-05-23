@@ -8,8 +8,8 @@ export const fetchUsers = () => {
   return ncNewsApi.get("/users")
 }
 
-export const fetchArticles = (params = {}) => {
-  return ncNewsApi.get("/articles", {params})
+export const fetchArticles = (params) => {
+  return ncNewsApi.get("/articles", {params: params})
 }
 
 export const fetchArticleById = (article_id) => {

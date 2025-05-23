@@ -15,16 +15,31 @@ const Newsfeed = () => {
 
   const setSortOrder = (direction) => {
     const newParams = new URLSearchParams(searchParams);
+    
     newParams.set("order", direction);
     setSearchParams(newParams);
   };
   const setSortBy = (query) => {
     const newParams = new URLSearchParams(searchParams);
+
     newParams.set("sort_by", query);
     setSearchParams(newParams);
   };
 
   useEffect (() => {
+    setError(null);
+    const validSortBy = ["votes", "created_at", "comment_count"];
+    const validOrder = ["asc", "desc"];
+    if (sortByQuery && !validSortBy.includes(sortByQuery)) {
+      setError("Invalid sort_by value");
+      return;
+    }
+
+    if (orderQuery && !validOrder.includes(orderQuery)) {
+      setError("Invalid order value");
+      return;
+    }
+  
     setIsLoading(true)
       fetchArticles({sort_by: sortByQuery, order: orderQuery })
       .then((res) => {
@@ -36,6 +51,7 @@ const Newsfeed = () => {
         setError("Failed to retrieve articles")
   })
    }, [sortByQuery, orderQuery]) 
+
 
 if (isLoading) {
   return <h2>Loading...</h2>
